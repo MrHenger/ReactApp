@@ -22,6 +22,10 @@ export default class FormUser extends Component
     handleSubmit(e){
         e.preventDefault();
         this.props.save(this.state);
+        this.setState({
+            name: '',
+            lastName: ''
+        })
     }
 
     render() {

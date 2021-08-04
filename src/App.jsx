@@ -8,26 +8,34 @@ export default class App extends Component {
 	{
 		const users = [
 			{
-				name: 'Admin',
-				lastName: 'Admin'
+				name: "Super",
+				lastName: "Admin"
 			}
 		];
 
 		super()
-        this.state = {
+        this.state = {		
 			users
 		}
 
-		this.addUser = this.addUser.bind(this)
-	}
+		this.addUser = this.addUser.bind(this);
+		this.removeUser = this.removeUser.bind(this);
+	};
 
 	addUser(user)
 	{
-		console.log(user);
 		this.setState({
 			users: [...this.state.users, user]
 		});
-	}
+	};
+
+	removeUser(index) {
+		this.setState({
+		  users: this.state.users.filter((e, i) => {
+			return i !== index;
+		  }),
+		});
+	  }
 
 	render(){
 		return (
@@ -35,7 +43,7 @@ export default class App extends Component {
 				<div className="container">
 					<div className="row">
 						<div className="col">
-							<ListUser/>
+							<ListUser users={this.state.users} remove={this.removeUser}/>
 						</div>
 						<div className="col">
 							<FormUser save={this.addUser}/>
@@ -45,7 +53,7 @@ export default class App extends Component {
 				
 			</div>
 		)
-	}
-}
+	};
+};
 
 
